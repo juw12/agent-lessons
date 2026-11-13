@@ -1,0 +1,50 @@
+# General engineering habits
+
+46 lessons. Most-repeated first.
+
+- CARTO basemap tiles now need an API key. Plain OSM tiles work (with attribution).
+- Read the mode's known false alarms before "fixing".
+- Image_part was removed (now shot_parts); only internal, no caller broke *(correction from the human)*
+- Bisecting by swapping single files is confounded when the new files import each other (missing export kills the module). Instrument the event path (capture listeners for mousedown/mouseup/auxclick) instead.
+- Desktop grid: put the hint in its own row under the cat (rows `auto 1fr auto auto 1fr`) so cat+hint stay one block and the side column centres against it.
+- Calling a `const` arrow function (openSheet) before its declaration throws a TDZ error that only shows on the first run; declare UI helpers before use.
+- Guide or tutorial art reads better as real renders of the product (world.photo()) than as separate SVG drawings, and costs about 16 KB per WebP.
+- Flex rows with ::before separators put dots at the start of wrapped lines; use inline text joined with " · " instead.
+- Duplicate `const` names across appended code break a whole ES module (MONTH_NAMES vs MONTH_TITLES).
+- User overrides queue step: never end with Next/queued items; finish all sync work in the same run *(correction from the human)*
+- Close cheap limitations instead of only listing them *(correction from the human)*
+- Several shading bands on a thin limb read as a second tube. Draw anatomy with the silhouette itself (wide shoulder root, tapered wrist) and use one crescent of shade.
+- Bot scores swing ~1 point between identical resamples; pool 2-3 samples. Feature gains from bot complaints beat cosmetic tweaks. *(correction from the human)*
+- Never reuse a short class name (.pop) for a new state; it silently inherited position:absolute and threw the chip over text.
+- MakeColumn title-cases names, so any localization lookup on column names must be case-insensitive.
+- `goto` to a same-page hash link waits for a 'load' that never comes: go via about:blank first.
+- User wants: no asking, no excuses, keep going until queue empty, say why it stopped *(correction from the human)*
+- User wants limits tackled not explained; final reply must have no queued items *(correction from the human)*
+- User: strictly keep going even if bigger, until no queued or next items *(correction from the human)*
+- A 9x8 dHash is a framing hash, not a scene hash: 2-3 % drift breaks it. For burst duplicates use aligned normalised correlation on a small thumbnail. Simulate bursts as equal-size crops at offsets, not crop-vs-full-frame (that is a zoom and gives false low scores).
+- Kernel: a restarted screen driver must not trust the previous driver's hardware cursor. A line of exactly 80 characters followed by a newline shows a blank line on an 80-column text screen.
+- Async thumbnail generators that share one viewer race each other; render thumbnails sequentially (or on a separate renderer) and use static thumbnails under SwiftShader.
+- QEMU: with `wait=on` connect the serial socket before QMP. `-d int` adds about 100 µs per trap and writes hundreds of MB; never time with it.
+- App: measure a Tk settings window against the work area before adding help rows; when a section outgrows the window, give it its own tab.
+- Bench: "one pass instead of two" did not halve the unpack time (91 s -> 52 s and 377 s -> 235 s); measure before writing "twice as fast".
+- App: work started at a key press belongs on its own thread, and state another thread can read must be complete before it is published.
+- App: a wrapped Tk label changes the window width with its text; pin the width with an empty frame as wide as the wrap length.
+- Speech: a character count is not an accuracy measure: a Japanese text got shorter while its error fell; compare error rates.
+- Bench: a comparison column must use the same clips on both sides; return "not measured" unless every clip is found.
+- Bench: a "processor busy" figure sampled while your own code decodes includes your own load; say so in the column.
+- Run: a batch of edits behind a failing first statement makes no edits; put the risky call last or in its own call.
+- Words: a one-phoneme tolerance on real words still rewrites everyday speech; only exact homophones are safe.
+- Batch-relative thresholds: use an upper percentile, not the median, so bad batches cannot lower the bar.
+- Kernel: a lookup "by name" in a task table must skip ended tasks that still wait to be noticed.
+- Bench: a diagnostic that loops over recordings must skip an empty one before it concatenates.
+- Bench: busy loops started by a benchmark must end by themselves.
+- (inti r4) A positional mutant sample is redrawn whenever the list of places changes, so earlier scores and the "held-out" label do not carry over. Count the overlap with the earlier samples instead of guessing why a score moved.
+- (inti r4) Start every detached job with the job environment; without it QEMU is not found and the run says nothing about the tree. Mark such a run invalid, do not count it.
+- (kilat r1) rustup's toolchain list changed its default marker; parse the active toolchain from `rustup show active-toolchain` instead.
+- (inti r4) A usage figure read in the middle of an accounting window is not a measurement; keep the last complete window and read that.
+- (inti r4) Two writers on one serial line interleave under host load. Fix the sharing (one writer), not the one symptom that showed.
+- (kilat r1) A fuzz harness must prove it can catch a planted crash and a planted hang before its "no failures" means anything.
+- (inti r4) Reusing a job name overwrites the earlier log; give reruns new names so the record of a failed run survives.
+- (mlbb-blame r6-7) Remember a list of seen hashes, not one, or the second-last item gets offered again.
+- PDF text: spans joined without a separator put datum letters next to each other; join with a space before parsing GD&T frames.
+- OCP: call `STEPControl_Controller.Init_s()` before setting `write.step.unit`, or the unit setting is ignored.

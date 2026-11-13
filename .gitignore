@@ -1,0 +1,3 @@
+redact.json
+*.private.*
+__pycache__/
